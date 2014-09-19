@@ -1,0 +1,160 @@
+
+Changelog and Tech Notes
+---
+
+
+9/17
+---
+
+Things to Fix:
+- nanowrimo calculations
+- start marketing the tool in October!
+
+7/23
+---
+
+
+Flow Outline
+
++ Splash
+| + Log In
+| | ? (if no posts)
+| | | - Write
+| | ? (if posts)
+| | | - Dashboard
+| + WriteApp
+| | > Log In
+| | | > Save as new post
+
+
+
+Application Outline
+
++ Application 
+| + Dashboard
+| | - Header
+| | | + PostList
+| | | | + PostListItem
+| | | + PostItem (info about the essay, actions)
+| | | + Profile (slides in)
+| + Write
+| | - Header (Go back / return)
+| | - WriteApp
+| + Share
+| | - PostPublic (url: nanowrito.com/novels/{{user}}/{{essayURL}})
+
+
+
+
+
+
+Temporarily deployed at: nanowrito.meteor.com
+
+Things in the horizon / Potential ideas
+---
+
+
+--- imminent
+
+- Settings
+   - sessions
+      - on / off
+      - turn on/off 'session grid' in dashboard - can be annoying for ppl w/o Flash who need to copy. Can't select all and copy
+   - share novel
+      - private, shared
+   - share url 
+   - note: shared novels update in real time
+
+- Word Goal
+- add nanowrito mode (30 days, 50k words)
+   - add microwrito mode (7 days, 10k words)
+   - add dreamwrito mode (5 minute countdown, every day)
+   - camp nano feature in the future
+
+- edit session
+   - add lock date
+   - exclude a section from the flow + count /"deactivate" (nah not yet)
+   - delete session (not undoable)
+   - edit word count real time when editing (nah - updates when users save. editing isn't for rewriting sections)
+
+
+WORD WAR!!
+
+
+- way beyond the horizon if people want:
+   - read people's essays / essay browser / best of / lists / upcoming
+   - publish / sharing / public link / social sharing links
+   - live writing / voyeurism / sharing
+   - novel tagging 
+
+
+
+--- near future
+- clean up SCSS 
+- clean up code structure
+   refactor notes
+   - user- is used for options in css and js, but should switch to option- to be clearer
+   - use bem-like notation / struct
+
+
+- word war!
+- able to CRUD/edit and move sessions around?
+
+- write or die features
+   - auto erase
+
+- word puppet mode
+   - every word your write (spaces) add to the text
+   - meat puppet mode: every letter gets added to text
+   - novel list - peek at the first sentence?
+
+- novel browser
+
+
+
+--- way future
+- encryption using oauth-encryption - still work in progress / no access to package. on hold
+
+- ability to change twitter accounts in the future?!
+- voting
+- comments + moderation (use ext. service?)
+- chapters and section tags / tagging
+- notes
+- download - need to wait for Meteor's CollectionFS package to become more stable
+
+
+
+
+--- done!
+
+- Duplicate all the functionality from Nanowrito 1
+- add accounts: twitter, fb login, or keep it anonymous (no save) --- only twitter for now
+- add create new story / track stories / CRUD stories
+- "continuing {{novel title}}" or "write new novel " for write app
+- instead of writing / continuing the entire novel, create a new "session?" and only write to that session?
+- logged out state to logged in state save transition
+- make mobile friendly - esp. iPad. Local / offline friendly as well would be nice. (no offline mode available for now)
+- style the errors (a little buggy- duplicate errors showing. whatever)
+- add legal notes. Saving, storing, security, etc.
+- Main Settings
+   - username
+   - font size
+   - Word Counter
+      - Off
+      - Writing Mode 
+      - Writing & Zen Mode
+
+- clicking Back in a novel should take you back to the novel you just wrote
+
+- responsive styles
+- new novel page- wide page, the styles break (titles need to have own rows)
+
+
+--- to consider / shelved
+
+- combine sessions? doesn't seem necessary
+- add a blog area (replaced with a twitter - could maybe input from the API?)
+
+
+
+

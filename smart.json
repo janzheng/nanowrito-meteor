@@ -1,0 +1,10 @@
+{
+  "packages": {
+    "scss": {},
+    "bourbon": {},
+    "neat": {},
+    "errors": {},
+    "jquery-clipboard": {}
+
+  }
+}

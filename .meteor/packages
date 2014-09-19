@@ -1,0 +1,30 @@
+# Meteor packages used by this project, one per line.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+standard-app-packages
+accounts-twitter
+jquery
+jquery-clipboard
+sacha:spin
+#scss
+fourseven:scss
+sewdn:twitter-api
+underscore
+manuelschoebel:wait-on-lib
+ian:accounts-ui-bootstrap-3
+bootstrap3-sass
+mrt:jquery-ui
+neat
+compass-sass
+errors
+oauth-encryption
+oauth
+#iron-router
+iron:layout
+meteorhacks:fast-render
+iron:router
+custom-code
+copleykj:jquery-autosize
+raix:handlebar-helpers
