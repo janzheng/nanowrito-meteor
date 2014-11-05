@@ -21,7 +21,7 @@ Template.postSelected.rendered = function() {
   Session.set('activeId', this.data.activeId);  //used to highlight the left-hand rail
   Session.set('configure', false); //
   Session.set('sessionDisplay', true); // display as sessions (true) or as paragraph only (false) - necessary for non-flash to copy
-
+  Session.set('allowModeSwitch', true); // allows switching between novel and session modes. Only allow when not editing text.
 
   // define what element should be observed by the observer
   // and what types of mutations trigger the callback
@@ -199,6 +199,10 @@ Template.postSelected.helpers({
     var start = moment(post.options.startdate);
     var diff = end.diff(start,'days');
     return addCommas((wordCount/diff).toFixed(2));
+  },
+  modeSwitchLocked: function() {
+    if (!Session.get('allowModeSwitch'))
+      return 'modeSwitchLocked'
   }
 });
 
@@ -221,6 +225,8 @@ Template.postSelected.events({
    },
 
   'click .post__save': function(e) {
+
+    console.log ('post save ... is this ever triggered?!');
 
     var postId = this._id;
     var post = {
@@ -250,6 +256,9 @@ Template.postSelected.events({
 
   // allows users to edit the session
   'click .post-edit': function(e) {
+
+    // lock mode switching
+    Session.set('allowModeSwitch', false );
 
     // need to do an edit check here
     if (Session.get('sessionId') == '') {
@@ -285,7 +294,7 @@ Template.postSelected.events({
       //                  .replace(/(<([^>]+)>)/ig, "");   // remove any remaining tags
 
       // paragraph = _.unescape(paragraph);
-      var paragraph = paraElem.val();
+      var paragraph = paraElem.val() + '\n \n';
 
       // console.log('test paragraph 0000000000 --------------------------------');
 
@@ -352,6 +361,10 @@ Template.postSelected.events({
         // clear the edit session
         Session.set('sessionId','');
       });
+
+
+    // unlock mode switching
+    Session.set('allowModeSwitch', true );
   },
   // cancel edit mode without saving anything
   'click .post-edit-cancel': function(e) {
@@ -369,6 +382,10 @@ Template.postSelected.events({
     $('.post-paragraph[data-sessionid="'+elem.data('sessionid')+'"]').val(output);
     $('.post-paragraph[data-sessionid="'+elem.data('sessionid')+'"]').prop('readonly', true);
     $('.post-paragraph[data-sessionid="'+elem.data('sessionid')+'"]').removeClass('post-paragraph-edit-active');
+  
+
+    // unlock mode switching
+    Session.set('allowModeSwitch', true );
   },
 
   // delete the entire novel
@@ -379,6 +396,7 @@ Template.postSelected.events({
       Posts.remove(currentPostId);
       Router.go('/');
     }
+
   },
 
   // delete a specific session, after a user has clicked "edit" on the session
@@ -396,6 +414,12 @@ Template.postSelected.events({
         Session.set('sessionId','');
       });
     }
+
+    $('.post-paragraph').prop('readonly', true);
+    $('.post-paragraph').removeClass('post-paragraph-edit-active');
+  
+    // unlock mode switching
+    Session.set('allowModeSwitch', true );
   },
 
   'click .post-settings-configure': function(e) {
@@ -408,14 +432,17 @@ Template.postSelected.events({
   // display paragraphs or sessions
   // editing only works in sessions, but paragraph view might be preferred by some
   'click .post-settings-display-mode': function(e) {
-    if(Session.get('sessionDisplay'))
-      Session.set('sessionDisplay',false); // paragraph mode when false
-    else
-      Session.set('sessionDisplay',true); // sessions mode when true
 
-    // set autosize when we switch display mode
-    // setTimeout(function(){setAutosize()},400);
-    waitAutosize();
+    if (Session.get('allowModeSwitch')) {
+      if(Session.get('sessionDisplay'))
+        Session.set('sessionDisplay',false); // paragraph mode when false
+      else
+        Session.set('sessionDisplay',true); // sessions mode when true
+
+      // set autosize when we switch display mode
+      // setTimeout(function(){setAutosize()},400);
+      waitAutosize();
+    }
   }
 });
 

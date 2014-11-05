@@ -27,6 +27,8 @@ http://www.reddit.com/r/nanowrimo/comments/2l67jm/nanowrito_the_speedy_web_app_t
 
 better CTA to hit "enter" - consider the Mac OSX lock screen when they show "tab" 
 
+bug: disable switching novel modes when in session edit mode
+
 
 Book: Bird by Bird
 - support multiple drafts. Making it better for people who are shy about writing; empty page syndrome

@@ -595,7 +595,12 @@ body {
           margin-top: $base/2;
           margin-left: 0;
         }
-
+      }
+      // if disabled, override colors to dark gray
+      .modeSwitchLocked {
+        color: $gray !important;
+        border-color: $gray !important;
+        cursor: default;
       }
     }
     .post-settings-container {
