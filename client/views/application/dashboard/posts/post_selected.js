@@ -207,6 +207,9 @@ Template.postSelected.helpers({
     var daysPassed = now.diff(start,'days');
     return Math.round((daysPassed+1) * (50000/30) * 100) / 100;
   },
+  dailyPace: function() {
+    return Math.round(50000/30);
+  },
   modeSwitchLocked: function() {
     if (!Session.get('allowModeSwitch'))
       return 'modeSwitchLocked'
