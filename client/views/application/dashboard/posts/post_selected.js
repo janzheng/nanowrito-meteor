@@ -127,7 +127,7 @@ Template.postSelected.helpers({
     var output = "";
     _.each(this.paragraphs, function(paragraph) {
       // output += paragraph + '\n \n'; //don't add so many new lines?
-      
+
       output += paragraph;
     });
     // console.log('getpara')
@@ -200,6 +200,12 @@ Template.postSelected.helpers({
     var start = moment(post.options.startdate);
     var diff = end.diff(start,'days');
     return addCommas((wordCount/diff).toFixed(2));
+  },
+  wordPace: function() {
+    var start = moment(post.options.startDate);
+    var now = moment();
+    var daysPassed = now.diff(start,'days');
+    return Math.round((daysPassed+1) * (50000/30) * 100) / 100;
   },
   modeSwitchLocked: function() {
     if (!Session.get('allowModeSwitch'))

@@ -44,7 +44,7 @@
         <div class="post-info row nw-no-margin" >
           <div class="post-info-basic col-xs-12 col-sm-5">
             <div class="post-subtitle">Stats </div>
-            <div class="post-info-block"><span class="post-info-title">Word Count: </span><span class="post-info-desc">{{getWordCount}}</span></div>
+            <div class="post-info-block"><span class="post-info-title">Words Written: </span><span class="post-info-desc">{{getWordCount}}</span></div>
             <div class="post-info-block"><span class="post-info-title">Sessions: </span><span class="post-info-desc">{{getSessionCount}}</span></div>
             <!-- <div class="post-info-block"><span class="post-info-title">Words per Day: </span><span class="post-info-desc">{{getWordsPerDay}}</span></div> -->
           </div>
@@ -52,6 +52,7 @@
           {{#if hasGoals}}
             <div class="post-info-basic col-xs-12 col-sm-7">
               <div class="post-subtitle">{{novelType}} Goal</div>
+              <div class="post-info-block"><span class="post-info-title">Target Pace: </span><span class="post-info-desc">{{wordPace}}</span></div>
               <div class="post-info-block"><span class="post-info-title">Start Date: </span><span class="post-info-desc">{{startDate}}</span></div>
               <div class="post-info-block"><span class="post-info-title">Days Passed: </span><span class="post-info-desc">{{daysPassed}}</span></div>
               <div class="post-info-block"><span class="post-info-title">Goal Date: </span><span class="post-info-desc">{{goalDate}}</span></div>

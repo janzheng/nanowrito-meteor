@@ -30,6 +30,10 @@ better CTA to hit "enter" - consider the Mac OSX lock screen when they show "tab
 bug: disable switching novel modes when in session edit mode
 
 
+reddit support:
+https://ssl.reddit.com/prefs/apps
+
+
 Book: Bird by Bird
 - support multiple drafts. Making it better for people who are shy about writing; empty page syndrome
 - Revisions: http://www.amazon.com/Bird-Some-Instructions-Writing-Life/dp/0385480016
