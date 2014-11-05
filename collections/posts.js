@@ -90,7 +90,13 @@ Meteor.methods({
     if (!user)
       throw new Meteor.Error(401, "You need to login to post new stories");
 
-    console.log('creating new post... obj: ')
+    console.log('[COLLECTION] - creating new novel / post object. ');
+
+   if(typeof obj.novelType === 'undefined'){
+     // if a user is writing when s/he's not logged in, the type is undefined. Set these explicitly as free writing.
+      obj.novelType = "free";
+      console.log("[COLLECTION] - novel type undefined");
+   };
 
     var post = {
       title: 'New Novel',

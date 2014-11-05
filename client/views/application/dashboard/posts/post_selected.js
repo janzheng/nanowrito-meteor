@@ -40,7 +40,8 @@ Template.postSelected.rendered = function() {
       // fired when a mutation occurs
       // console.log('mutation occurred')
       // console.log(mutations, observer);
-      setAutosize(); //resize on DOM mutations
+      // setAutosize(); //resize on DOM mutations
+      waitAutosize();
       // ...
   });
 
@@ -59,7 +60,7 @@ Template.postSelected.rendered = function() {
 
   // set autosize. Need a timer because some paragraphs might not have finished filling in yet
   // no idea how to set a reactive callback with autosize so this is hacky, but works.
-  setTimeout(function(){setAutosize()},400)
+  waitAutosize();
 
 }
 
@@ -125,6 +126,7 @@ Template.postSelected.helpers({
   getParagraphs: function() {
     var output = "";
     _.each(this.paragraphs, function(paragraph) {
+      // output += paragraph + '\n \n'; //don't add so many new lines?
       output += paragraph;
     });
     // console.log('getpara')
@@ -267,6 +269,9 @@ Template.postSelected.events({
   },
 
   'click .post-edit-save': function(e) {
+
+      console.log ('Saving edited content...');
+
       var elem = $(e.currentTarget)
       var id = post._id;
       var session = _.findWhere(post.sessions, {sessionId: Session.get('sessionId')});
@@ -342,6 +347,7 @@ Template.postSelected.events({
         // $('.post-paragraph[data-sessionid="'+elem.data('sessionid')+'"]').attr('contenteditable','false');
         $('.post-paragraph[data-sessionid="'+elem.data('sessionid')+'"]').prop('readonly', true);
         $('.post-paragraph[data-sessionid="'+elem.data('sessionid')+'"]').removeClass('post-paragraph-edit-active');
+        $('.post-paragraph[data-sessionid="'+elem.data('sessionid')+'"]').trigger('autosize.resize');
 
         // clear the edit session
         Session.set('sessionId','');
@@ -406,6 +412,10 @@ Template.postSelected.events({
       Session.set('sessionDisplay',false); // paragraph mode when false
     else
       Session.set('sessionDisplay',true); // sessions mode when true
+
+    // set autosize when we switch display mode
+    // setTimeout(function(){setAutosize()},400);
+    waitAutosize();
   }
 });
 
@@ -551,6 +561,10 @@ function setAutosize() {
   $('.post-paragraph').autosize();
 }
 
+// need to use a timer to set autosize b/c things need to finish loading
+function waitAutosize() {
+  setTimeout(function(){setAutosize()},400)
+}
 
 
 // use MutationObserver to track DOM changes for completion callback

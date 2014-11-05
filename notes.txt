@@ -2,6 +2,42 @@
 Changelog and Tech Notes
 ---
 
+Need a public-facing marketing and changelog page
+- more marketing, more public friendly for the next iteration
+
+Use friendlier colors. Choice of colors.
+
+REDESIGN INSPIRATION:
+https://unclegoose.com/about/
+https://themanual.org/read/staffpicks
+
+WriteorDie options:
+- http://writeordie.com/
+- Word meter- start losing "lives / XP" when writing slowly
+- Level up
+- Game!
+
+
+Notes and bugs and ideas from here:
+http://www.reddit.com/r/nanowrimo/comments/2l67jm/nanowrito_the_speedy_web_app_that_helped_me_write/
+
+
+- Add noisly integration (bg color?)
+- 
+
+better CTA to hit "enter" - consider the Mac OSX lock screen when they show "tab" 
+
+
+Book: Bird by Bird
+- support multiple drafts. Making it better for people who are shy about writing; empty page syndrome
+- Revisions: http://www.amazon.com/Bird-Some-Instructions-Writing-Life/dp/0385480016
+- Notes and aligning with previous notes and drafts; note lookup
+
+
+
+Tracking + Analytics
+- track avg. pace rate, session time, how many people start, how many finish, how many new novels created live counter
+
 
 9/17
 ---

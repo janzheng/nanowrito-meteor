@@ -202,9 +202,6 @@ function novelCreate() {
    if (postExists() || !Session.get('userLoggedIn')) { return null; }
 
    var obj = {
-      // nothing to see here
-      // placeholder in case we need later
-
       novelType: Session.get('selectedType') // set in the post_write.js from user selection
    }
 

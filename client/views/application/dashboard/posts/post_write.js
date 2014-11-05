@@ -39,7 +39,8 @@ Template.postWrite.helpers({
     }
   },
   inactive: function() {
-    if (moment().month() != 11) {
+      console.log('current month: ' + moment().month() )
+    if (moment().month() != 10) {
       return 'not-yet-nano'; 
     }
   },
@@ -51,7 +52,7 @@ Template.postWrite.helpers({
     console.log('end dayte: ' + end.format('MM-DD-YYYY'))
     console.log('diff: ' + end.diff(start, 'days'))
 
-    if (moment().month() < 11) {
+    if (moment().month() < 10) {
       return "The challenge starts in " + diff + " days";
     } else {
       return "NaNoWriMo has Started!";
@@ -63,7 +64,7 @@ Template.postWrite.helpers({
 Template.postWrite.events({
   'click a[data-type="nanowrimo"]': function(e) { 
     console.log('nanowrimo novel init')
-    // Session.set('selectedType', 'nanowrimo');
+    Session.set('selectedType', 'nanowrimo');
   },
   'click a[data-type="monthly"]': function(e) { 
     console.log('monthly novel init')
