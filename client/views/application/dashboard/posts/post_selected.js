@@ -127,6 +127,7 @@ Template.postSelected.helpers({
     var output = "";
     _.each(this.paragraphs, function(paragraph) {
       // output += paragraph + '\n \n'; //don't add so many new lines?
+      
       output += paragraph;
     });
     // console.log('getpara')

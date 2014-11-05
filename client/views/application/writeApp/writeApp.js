@@ -84,11 +84,10 @@ Template.writeApp.helpers({
     // return _.each(Session.get('content'), function(elem, index, list) {
        // console.log('element entry: ' + elem); //add a newline here?
     // })
-
     var paragraphs = Session.get('paragraphs');
     var output = "";
     $.each(paragraphs, function( index, value ) {
-      output += "<p>"+value+"</p>";
+      output += "<p>"+ escapeHtml(value)+"</p>";
     });
 
     return output;
@@ -363,3 +362,20 @@ window.onbeforeunload = function (event) {
   }
 }
       
+
+
+// escape text from: http://stackoverflow.com/questions/24816/escaping-html-strings-with-jquery
+var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+  };
+
+  function escapeHtml(string) {
+    return String(string).replace(/[&<>"'\/]/g, function (s) {
+      return entityMap[s];
+    });
+  }
