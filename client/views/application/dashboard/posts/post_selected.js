@@ -182,6 +182,10 @@ Template.postSelected.helpers({
   startDate: function() {
     return moment(post.options.startDate).format('MM/D/YY');
   },
+  createdDate: function() {
+    var time = this.createdDate;
+    return moment(time).format('MM/D/YY');
+  },
   goalDate: function() {
     return moment(post.options.endDate).format('MM/D/YY');
   },
