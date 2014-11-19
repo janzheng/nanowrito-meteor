@@ -91,7 +91,7 @@ Template.postSelected.helpers({
   getSessionWords: function() {
     var counter = 0;
     _.each(this.paragraphs, function(paragraph) {
-      if(paragraph.length>0)
+      if(paragraph.length>0 && (paragraph.match(/\S+/g) !== null) )
         counter += paragraph.match(/\S+/g).length;
     });
     return counter;
@@ -100,8 +100,13 @@ Template.postSelected.helpers({
     var counter = 0;
     _.each(this.sessions, function(sess) {
       _.each(sess.paragraphs, function(paragraph) {
-        if(paragraph.length>0)
+        // console.log("paragraph!!! word count: ")
+        // console.log(paragraph.length)
+        if(paragraph.length>0 && (paragraph.match(/\S+/g) !== null)) {
+          // console.log('match? : ' + (paragraph.match(/\S+/g)=== null))
+          // console.log(typeof (paragraph.match(/\S+/g)) === 'undefined') // < this should be UNDEFINED which is throwing the bug
           counter += paragraph.match(/\S+/g).length;
+        }
       });
     });
     wordCount = counter;
@@ -199,20 +204,20 @@ Template.postSelected.helpers({
     var now = moment();
     return end.diff(now,'days');
   },
-  wordsPerDay: function() {
-    var end = moment(post.options.endDate);
-    var start = moment(post.options.startdate);
-    var diff = end.diff(start,'days');
-    return addCommas((wordCount/diff).toFixed(2));
-  },
-  wordPace: function() {
+  currentPace: function() {
     var start = moment(post.options.startDate);
     var now = moment();
     var daysPassed = now.diff(start,'days');
-    return Math.round((daysPassed+1) * (50000/30) * 100) / 100;
+    return addCommas((wordCount/daysPassed).toFixed(2));
+  },
+  targetPace: function() {
+    var start = moment(post.options.startDate);
+    var now = moment();
+    var daysPassed = now.diff(start,'days');
+    return addCommas(Math.round((daysPassed+1) * (50000/30) * 100) / 100);
   },
   dailyPace: function() {
-    return Math.round(50000/30);
+    return addCommas(Math.round(50000/30));
   },
   modeSwitchLocked: function() {
     if (!Session.get('allowModeSwitch'))
